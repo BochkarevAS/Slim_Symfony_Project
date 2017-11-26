@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ genus.name }} {% endblock  %}
+{% block body %}
+
+        <div>
+                <div>Subfamily:</div>
+                <div>{{ genus.subFamily }}</div>
+                <div>Known Species:</div>
+                <div>{{ genus.specCount|number_format }}</div>
+                <div>Fun Fact:</div>
+                <div>{{ genus.funFact|markdownify }}</div>
+                <div>Recent Notes</div>
+                <div>{{ recentNoteCount }}</div>
+        </div>
+
+{% endblock  %}
