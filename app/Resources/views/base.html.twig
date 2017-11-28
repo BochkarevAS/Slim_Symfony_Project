@@ -11,7 +11,12 @@
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        <a href="{{ path('security_login') }}">Login</a>
+
+        {% if is_granted('ROLE_USER') %}
+            <li><a href="{{ path('security_logout') }}">Logout</a></li>
+        {% else %}
+            <li><a href="{{ path('security_login') }}">Login</a></li>
+        {% endif %}
 
         {% for msg in app.session.flashBag.get('success') %}
             <div class="alert alert-success">
