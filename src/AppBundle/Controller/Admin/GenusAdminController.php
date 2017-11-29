@@ -4,14 +4,14 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Genus;
 use AppBundle\Form\GenusFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin")
- * Class GenusAdminController
- * @package AppBundle\Controller\Admin
+ * @Security("is_granted('ROLE_MANAGE_GENUS')")
  */
 class GenusAdminController extends Controller {
 
@@ -38,7 +38,7 @@ class GenusAdminController extends Controller {
             $genus = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($genus);
-            $this->addFlash('success', 'Genus created!');
+            $this->addFlash('success', sprintf('Genus created by you: %s!', $this->getUser()->getEmail()));
             $em->flush();
 
             return $this->redirectToRoute('admin_genus_list');
@@ -61,7 +61,7 @@ class GenusAdminController extends Controller {
             $genus = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($genus);
-            $this->addFlash('success', 'Genus edit!');
+            $this->addFlash('success','Genus edit');
             $em->flush();
 
             return $this->redirectToRoute('admin_genus_list');

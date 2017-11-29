@@ -50,9 +50,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator {
     public function getUser($credentials, UserProviderInterface $userProvider) {
         $username = $credentials['_username'];
 
-        return $this->em->getRepository('AppBundle:Users')->findOneBy([
-            'email' => $username
-        ]);
+        return $this->em->getRepository('AppBundle:Users')->findOneBy(['email' => $username]);
     }
 
     public function checkCredentials($credentials, UserInterface $user) {

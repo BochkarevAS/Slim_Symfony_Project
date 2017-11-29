@@ -1,2 +1,0 @@
-services:
-    app.security.login_form_authenticator: '@AppBundle\Security\LoginFormAuthenticator'
